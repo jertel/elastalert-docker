@@ -15,6 +15,7 @@ RUN apk --update upgrade && \
     mv /opt/elastalert-${ELASTALERT_VERSION} /opt/elastalert && \
     cd /opt/elastalert && \
     sed -i 's/jira>=1.0.10/jira>=1.0.10,<1.0.15/g' setup.py && \
+    pip install "urllib3==1.21.1" && \
     python setup.py install && \
     pip install -e . && \
     apk del gcc libffi-dev musl-dev openssl-dev python2-dev && \
