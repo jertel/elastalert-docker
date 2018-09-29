@@ -1,6 +1,6 @@
 # ElastAlert-Docker
 
-This Dockerfile will build a Docker image that works with the existing elastalert chart, hosted in the Kubernetes chart repository: https://github.com/kubernetes/charts/tree/master/stable/elastalert.
+This Dockerfile will build a Docker image that works with the existing elastalert chart, hosted in the Kubernetes chart repository: https://github.com/helm/charts/tree/master/stable/elastalert
 
 ## ElasticSearch 6.0+
 The existing elastalert chart currently (as of Feb, 2018) references and outdated elastalert image that is incompatible with ElasticSearch 6.0+. This image resolves the issue as it is built from the latest elastalert image. 
