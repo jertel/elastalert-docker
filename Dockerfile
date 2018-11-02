@@ -6,7 +6,7 @@ LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 ARG ELASTALERT_VERSION=0.1.36
 
 RUN apk --update upgrade && \
-    apk add ca-certificates gcc libffi-dev musl-dev python2 python2-dev py2-pip py2-yaml openssl openssl-dev tzdata && \
+    apk add ca-certificates gcc libffi-dev musl-dev python2 python2-dev py2-pip py2-yaml openssl openssl-dev tzdata file-dev && \
     rm -rf /var/cache/apk/* && \
     wget https://github.com/Yelp/elastalert/archive/v${ELASTALERT_VERSION}.zip -O /tmp/elastalert.zip && \
     mkdir /opt && \
