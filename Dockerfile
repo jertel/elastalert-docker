@@ -3,7 +3,7 @@ FROM alpine
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
 LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 
-ARG ELASTALERT_VERSION=0.1.35
+ARG ELASTALERT_VERSION=0.1.36
 
 RUN apk --update upgrade && \
     apk add ca-certificates gcc libffi-dev musl-dev python2 python2-dev py2-pip py2-yaml openssl openssl-dev tzdata && \
@@ -14,7 +14,6 @@ RUN apk --update upgrade && \
     rm -f /tmp/elastalert.zip && \
     mv /opt/elastalert-${ELASTALERT_VERSION} /opt/elastalert && \
     cd /opt/elastalert && \
-    sed -i 's/jira>=1.0.10/jira>=1.0.10,<1.0.15/g' setup.py && \
     python setup.py install && \
     pip install -e . && \
     apk del gcc libffi-dev musl-dev openssl-dev python2-dev && \
