@@ -23,7 +23,7 @@ RUN mkdir -p /opt/elastalert/config && \
     mkdir -p /opt/elastalert/rules && \
     echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
     echo "elastalert-create-index --config /opt/config/elastalert_config.yaml" >> /opt/elastalert/run.sh && \
-    echo "elastalert --config /opt/config/elastalert_config.yaml \"\$@\"" >> /opt/elastalert/run.sh && \
+    echo "exec elastalert --config /opt/config/elastalert_config.yaml \"\$@\"" >> /opt/elastalert/run.sh && \
     chmod +x /opt/elastalert/run.sh
 
 VOLUME [ "/opt/config", "/opt/rules" ]
