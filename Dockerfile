@@ -1,4 +1,4 @@
-FROM python:2.7-alpine
+FROM python:3.6-alpine
 
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
 LABEL maintainer="Jason Ertel (jertel at codesim.com)"
@@ -6,11 +6,11 @@ LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 ARG ELASTALERT_VERSION=0.2.1
 
 RUN apk --update upgrade && \
-    apk add gcc libffi-dev musl-dev python2-dev openssl-dev tzdata libmagic && \
+    apk add gcc libffi-dev musl-dev python-dev openssl-dev tzdata libmagic && \
     rm -rf /var/cache/apk/*
 
 RUN pip install elastalert==${ELASTALERT_VERSION} && \
-    apk del gcc libffi-dev musl-dev python2-dev openssl-dev
+    apk del gcc libffi-dev musl-dev python-dev openssl-dev
 
 RUN mkdir -p /opt/elastalert/config && \
     mkdir -p /opt/elastalert/rules && \
