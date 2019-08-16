@@ -3,7 +3,7 @@ FROM python:2.7-alpine
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
 LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 
-ARG ELASTALERT_VERSION=0.2.0b2
+ARG ELASTALERT_VERSION=0.2.1
 
 RUN apk --update upgrade && \
     apk add gcc libffi-dev musl-dev python2-dev openssl-dev tzdata libmagic && \
