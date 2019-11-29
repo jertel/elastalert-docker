@@ -9,7 +9,7 @@ RUN apk --update upgrade && \
     apk add gcc libffi-dev musl-dev python-dev openssl-dev tzdata libmagic && \
     rm -rf /var/cache/apk/*
 
-RUN pip install elastalert==${ELASTALERT_VERSION} && \
+RUN pip install elastalert==${ELASTALERT_VERSION} certifi && \
     apk del gcc libffi-dev musl-dev python-dev openssl-dev
 
 RUN mkdir -p /opt/elastalert/config && \
