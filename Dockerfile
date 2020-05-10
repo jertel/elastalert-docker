@@ -12,7 +12,8 @@ RUN apk --update upgrade && \
 RUN pip install elastalert==${ELASTALERT_VERSION} && \
     apk del gcc libffi-dev musl-dev python-dev openssl-dev
 
-RUN echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
+RUN mkdir -p /opt/elastalert && \
+    echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
     echo "set -e" >> /opt/elastalert/run.sh && \
     echo "elastalert-create-index --config /opt/config/elastalert_config.yaml" >> /opt/elastalert/run.sh && \
     echo "exec elastalert --config /opt/config/elastalert_config.yaml \"\$@\"" >> /opt/elastalert/run.sh && \
