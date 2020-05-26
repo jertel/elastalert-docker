@@ -5,12 +5,10 @@ An Elastalert chart is available in the Codesim LLC Helm repository, and can be 
 
 ## Installing the Chart
 
-This chart requests a newer version of Helm, at least 3.2.1 or higher.
-
 Add the Codesim repository to your Helm configuration:
 
 ```console
-helm repo add codesim cm://charts.banzaicloud.io/gh/Codesim-LLC
+helm repo add codesim https://helm.codesim.com
 ```
 
 Next, install the chart with a release name, such as _elastalert_:
