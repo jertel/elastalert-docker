@@ -1,9 +1,6 @@
 # ElastAlert-Docker
 
-This Dockerfile will build a Docker image that works with the existing elastalert chart, hosted in the Kubernetes chart repository: https://github.com/helm/charts/tree/master/stable/elastalert
-
-## Staleness
-This image is certainly going to become stale over time. If you notice it has gone stale and needs rebuilt, you are welcome to send me a quick note at jertel at codesim.com and I'll trigger the automated build over at Docker Hub.
+This Dockerfile will build a Docker image for Elastalert. This image is compatible with the accompanying Helm chart for Kubernetes.
 
 ## Docker Hub
 
@@ -16,3 +13,6 @@ To build, install Docker and then run the following command:
 docker build . -t elastalert
 ```
 
+## Kubernetes
+
+See the Helm chart [README.md](chart/elastalert/README.md) for information on installing this application into an existing Kubernetes cluster.
