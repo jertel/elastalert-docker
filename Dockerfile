@@ -11,7 +11,8 @@ RUN apk --update upgrade && \
 
 RUN pip install elastalert==${ELASTALERT_VERSION} && \
     apk del gcc libffi-dev musl-dev python3-dev openssl-dev
-
+RUN mkdir -p /opt/config && \
+    wget -O /opt/config/config.yaml https://raw.githubusercontent.com/Yelp/elastalert/master/config.yaml.example
 RUN mkdir -p /opt/elastalert && \
     echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
     echo "set -e" >> /opt/elastalert/run.sh && \
