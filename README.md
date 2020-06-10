@@ -15,10 +15,10 @@ docker build . -t elastalert
 
 ## Running Elastalert
 
-A properly configured elastalert_config.json file must be mounted into the container during startup of the container. Use the [example file](https://github.com/Yelp/elastalert/blob/master/config.yaml.example) provided by Elastalert as a template, and once saved locally to a file such as `/tmp/elastalert.json`, run the container as follows:
+A properly configured elastalert_config.json file must be mounted into the container during startup of the container. Use the [example file](https://github.com/Yelp/elastalert/blob/master/config.yaml.example) provided by Elastalert as a template, and once saved locally to a file such as `/tmp/elastalert.yaml`, run the container as follows:
 
 ```bash
-docker run -d -v /tmp/elastalert.json:/opt/config/elastalert_config.yaml jertel/elastalert-docker
+docker run -d -v /tmp/elastalert.yaml:/opt/config/elastalert_config.yaml jertel/elastalert-docker
 ```
 
 ## Kubernetes
