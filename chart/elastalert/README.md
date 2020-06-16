@@ -14,12 +14,12 @@ helm repo add codesim https://helm.codesim.com
 Next, install the chart with a release name, such as _elastalert_:
 
 ```console
-helm install elastalert codesim/elastalert --set writebackIndex=elastalert
+helm install elastalert codesim/elastalert
 ```
 
 The command deploys Elastalert on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
-See the comment in the default `values.yaml` to know why `writebackIndex` is required for ES 6.x.
+See the comment in the default `values.yaml` for specifying a `writebackIndex` for ES 5.x.
 
 If necessary, open Dev Tools on Kibana and send the below request to avoid errors like `RequestError: TransportError(400, u'search_phase_execution_exception', u'No mapping found for [alert_time] in order to sort on')`
 
@@ -54,7 +54,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `args`                                       | args override for container                                                                                                   | `NULL`                          |
 | `replicaCount`                               | number of replicas to run                                                                                                     | 1                               |
 | `elasticsearch.host`                         | elasticsearch endpoint to use                                                                                                 | elasticsearch                   |
-| `elasticsearch.port`                         | elasticsearch port to use                                                                                                     | 80                              |
+| `elasticsearch.port`                         | elasticsearch port to use                                                                                                     | 9200                            |
 | `elasticsearch.useSsl`                       | whether or not to connect to es_host using SSL                                                                                | False                           |
 | `elasticsearch.username`                     | Username for ES with basic auth                                                                                               | `NULL`                          |
 | `elasticsearch.password`                     | Password for ES with basic auth                                                                                               | `NULL`                          |
@@ -81,6 +81,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | `realertIntervalMins`                        | Time between alarms for same rule, in minutes                                                                                 | `NULL`                          |
 | `alertRetryLimitMins`                        | Time to retry failed alert deliveries, in minutes                                                                             | 2880 (2 days)                   |
 | `bufferTimeMins`                             | Default rule buffer time, in minutes                                                                                          | 15                              |
-| `writebackIndex`                             | Name or prefix of elastalert index(es)                                                                                        | elastalert_status               |
+| `writebackIndex`                             | Name or prefix of elastalert index(es)                                                                                        | elastalert                      |
 | `nodeSelector`                               | Node selector for deployment                                                                                                  | {}                              |
 | `tolerations`                                | Tolerations for deployment                                                                                                    | []                              |

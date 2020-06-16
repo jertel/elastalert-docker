@@ -16,13 +16,12 @@ alertRetryLimitMins: 2880
 # Default time before realerting, in minutes
 realertIntervalMins: ""
 
-# For ES 5: The name of the index which stores elastalert's statuses
-# For ES 6: The prefix of the names of indices which store elastalert's statuses.
+# For ES 5: The name of the index which stores elastalert's statuses, typically elastalert_status
+# For ES 6: The prefix of the names of indices which store elastalert's statuses, typicaly elastalert
 #
 # See https://github.com/Yelp/elastalert/commit/c250100b7be07c68a53789569a86f87193ec37f4 for more details about this differentiation.
 #
-# CAUTION: It is recommended to set this to `elastalert` for ES6+. Otherwise elastalert produces confusing index names due to https://github.com/Yelp/elastalert/issues/1479#issuecomment-356380179
-writebackIndex: elastalert_status
+writebackIndex: elastalert
 
 image:
   # docker image
@@ -38,9 +37,9 @@ podAnnotations: {}
 
 elasticsearch:
   # elasticsearch endpoint e.g. (svc.namespace||svc)
-  host: ""
+  host: elasticsearch
   # elasticsearch port
-  port: 80
+  port: 9200
   # whether or not to connect to es_host using TLS
   useSsl: "False"
   # Username if authenticating to ES with basic auth
