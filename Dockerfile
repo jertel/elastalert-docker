@@ -1,22 +1,33 @@
-FROM python:alpine
+FROM python:alpine as builder
 
 LABEL description="ElastAlert suitable for Kubernetes and Helm"
 LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 
 RUN apk --update upgrade && \
-    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic git && \
+    apk add git && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir -p /opt/elastalert && \
-    git clone https://github.com/jertel/elastalert /opt/elastalert && \
-    cd /opt/elastalert && \
-	pip install -r requirements.txt && \
-    apk del gcc libffi-dev musl-dev python3-dev openssl-dev git
+    git clone https://github.com/jertel/elastalert /tmp/elastalert && \
+    cd /tmp/elastalert && \
+    pip install setuptools wheel && \
+    python setup.py sdist bdist_wheel
 
-RUN echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
+FROM python:alpine
+
+COPY --from=builder /tmp/elastalert/dist/*.tar.gz /tmp/
+
+RUN apk --update upgrade && \
+    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic && \
+	pip install /tmp/*.tar.gz && \
+    apk del gcc libffi-dev musl-dev python3-dev openssl-dev && \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir -p /opt/elastalert && \
+	echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
     echo "set -e" >> /opt/elastalert/run.sh && \
-    echo "python -m elastalert.create_index --config /opt/config/elastalert_config.yaml" >> /opt/elastalert/run.sh && \
-    echo "python -m elastalert.elastalert.py --config /opt/config/elastalert_config.yaml \"\$@\"" >> /opt/elastalert/run.sh && \
+    echo "elastalert-create-index --config /opt/config/elastalert_config.yaml" >> /opt/elastalert/run.sh && \
+    echo "elastalert --config /opt/config/elastalert_config.yaml \"\$@\"" >> /opt/elastalert/run.sh && \
     chmod +x /opt/elastalert/run.sh
 
 ENV TZ "UTC"
