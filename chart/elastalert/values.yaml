@@ -140,6 +140,10 @@ podSecurityPolicy:
 # nodeSelector:
 #   "node-role.kubernetes.io/infra_worker": "true"
 nodeSelector: {}
+
+# Specify node affinity or anti-affinity specifications
+affinity: {}
+
 # tolerations:
 #   - key: "node_role"
 #     operator: "Equal"

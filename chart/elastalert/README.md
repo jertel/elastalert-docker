@@ -83,4 +83,5 @@ The command removes all the Kubernetes components associated with the chart and 
 | `bufferTimeMins`                             | Default rule buffer time, in minutes                                                                                          | 15                              |
 | `writebackIndex`                             | Name or prefix of elastalert index(es)                                                                                        | elastalert                      |
 | `nodeSelector`                               | Node selector for deployment                                                                                                  | {}                              |
+| `affinity`                                   | Affinity specifications for the deployed pod(s)                                                                               | {}                              |
 | `tolerations`                                | Tolerations for deployment                                                                                                    | []                              |
