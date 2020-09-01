@@ -8,7 +8,7 @@ RUN apk --update upgrade && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir -p /opt/elastalert && \
-    git clone https://github.com/jertel/elastalert /tmp/elastalert && \
+    git clone -b alt https://github.com/jertel/elastalert /tmp/elastalert && \
     cd /tmp/elastalert && \
     pip install setuptools wheel && \
     python setup.py sdist bdist_wheel
