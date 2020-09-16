@@ -88,6 +88,15 @@ spec:
 {{- end }}
       volumes:
         - name: rules
+{{- if .Values.secretRulesName }}
+          secret:
+            secretName: {{ .Values.secretRulesName }}
+            items:
+{{- range $key := .Values.secretRulesList }}
+            - key: {{ $key }}
+              path: {{ $key}}.yaml
+{{- end }}
+{{- else }}
           configMap:
             name: {{ template "elastalert.fullname" . }}-rules
             items:
@@ -95,9 +104,15 @@ spec:
             - key: {{ $key }}
               path: {{ $key}}.yaml
 {{- end }}
+{{- end }}
         - name: config
+{{- if .Values.secretConfigName }}
+          secret:
+            secretName: {{ .Values.secretConfigName }}
+{{- else }}
           configMap:
             name: {{ template "elastalert.fullname" . }}-config
+{{- end }}
             items:
             - key: elastalert_config
               path: elastalert_config.yaml

@@ -84,6 +84,69 @@ extraConfigOptions: {}
   # kibana_url: https://kibana.yourdomain.com
   # slack_webhook_url: dummy
 
+# To load Elastalert's config via secret, uncomment the line below
+# secretConfigName: elastalert-config-secret
+
+# Example of a secret config
+
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: elastalert-config-secret
+#type: Opaque
+#stringData:
+#   elastalert_config: |-
+#     rules_folder: /opt/rules
+#     scan_subdirectories: false
+#     run_every:
+#       minutes: 1
+#     buffer_time:
+#       minutes: 15
+#     es_host: elasticsearch
+#     es_port: 9200
+#     writeback_index: elastalert
+#     use_ssl: False
+#     verify_certs: True
+#     alert_time_limit:
+#       minutes: 2880
+#     slack_webhook_url: https://hooks.slack.com/services/xxxx
+#     slack_channel_override: '#alerts'
+
+
+# To load Elastalert's rules via secret, uncomment the line below
+#secretRulesName: elastalert-rules-secret
+
+# Additionally, you must specificy which rules to load from the secret
+#secretRulesList: [ "rule_1", "rule_2" ]
+
+# Example of secret rules
+
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: elastalert-rules-secret
+#  namespace: elastic-system
+#type: Opaque
+#stringData:
+#   rule_1: |-
+#     name: Rule 1
+#     type: frequency
+#     index: index1-*
+#     num_events: 3
+#     timeframe:
+#       minutes: 1
+#     alert:
+#     - "slack"
+#   rule_2: |-
+#     name: Rule 2
+#     type: frequency
+#     index: index2-*
+#     num_events: 5
+#     timeframe:
+#       minutes: 10
+#     alert:
+#     - "slack"
+
 # Command and args override for container e.g. (https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)
 # command: ["YOUR_CUSTOM_COMMAND"]
 # args: ["YOUR", "CUSTOM", "ARGS"]
