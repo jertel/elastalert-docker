@@ -1,3 +1,4 @@
+{{- if not .Values.secretConfigName }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -44,4 +45,5 @@ data:
       minutes: {{ .Values.alertRetryLimitMins }}
 {{- if .Values.extraConfigOptions }}
 {{ toYaml .Values.extraConfigOptions | indent 4 }}
+{{- end }}
 {{- end }}
