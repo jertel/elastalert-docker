@@ -1,5 +1,5 @@
 
-# Helm Chart for Kubernets
+# Helm Chart for Kubernetes
 
 An Elastalert chart is available in the Codesim LLC Helm repository, and can be installed into an existing Kubernetes cluster by following the instructions below.
 
