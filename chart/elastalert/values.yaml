@@ -10,6 +10,9 @@ runIntervalMins: 1
 # Default rule buffer duration, in minutes
 bufferTimeMins: 15
 
+#The maximum time between queries for ElastAlert to start at the most recently run query. The default is one week.
+oldQueryLimitMins: 10080
+
 # Amount of time to retry and deliver failed alerts (1440 minutes per day)
 alertRetryLimitMins: 2880
 
