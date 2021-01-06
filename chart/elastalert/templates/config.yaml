@@ -21,6 +21,8 @@ data:
 {{- end }}
     buffer_time:
       minutes: {{ .Values.bufferTimeMins }}
+    old_query_limit:
+      minutes: {{ .Values.oldQueryLimitMins }}
     es_host: {{ .Values.elasticsearch.host }}
     es_port: {{ .Values.elasticsearch.port }}
 {{- if .Values.elasticsearch.username }}
