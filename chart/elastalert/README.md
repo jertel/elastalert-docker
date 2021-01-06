@@ -85,6 +85,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `realertIntervalMins`                        | Time between alarms for same rule, in minutes                                                                                 | `NULL`                          |
 | `alertRetryLimitMins`                        | Time to retry failed alert deliveries, in minutes                                                                             | 2880 (2 days)                   |
 | `bufferTimeMins`                             | Default rule buffer time, in minutes                                                                                          | 15                              |
+| `oldQueryLimitMins`                          | The maximum time between queries for ElastAlert to start at the most recently run query, in minutes                           | 10080 (1 week)                  |
 | `writebackIndex`                             | Name or prefix of elastalert index(es)                                                                                        | elastalert                      |
 | `nodeSelector`                               | Node selector for deployment                                                                                                  | {}                              |
 | `affinity`                                   | Affinity specifications for the deployed pod(s)                                                                               | {}                              |
