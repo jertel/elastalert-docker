@@ -97,10 +97,12 @@ spec:
 {{- if .Values.secretRulesName }}
           secret:
             secretName: {{ .Values.secretRulesName }}
+{{- if not .Values.secretRulesMountsAsDirectory }}
             items:
 {{- range $key := .Values.secretRulesList }}
             - key: {{ $key }}
               path: {{ $key}}.yaml
+{{- end }}
 {{- end }}
 {{- else }}
           configMap:
