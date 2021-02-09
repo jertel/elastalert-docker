@@ -20,7 +20,7 @@ COPY --from=builder /tmp/elastalert/dist/*.tar.gz /tmp/
 RUN apk --update upgrade && \
     apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic cargo && \
 	pip install /tmp/*.tar.gz && \
-    apk del gcc libffi-dev musl-dev python3-dev openssl-dev && \
+    apk del gcc libffi-dev musl-dev python3-dev openssl-dev cargo && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir -p /opt/elastalert && \
