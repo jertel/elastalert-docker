@@ -6,11 +6,11 @@ LABEL maintainer="Jason Ertel (jertel at codesim.com)"
 ARG ELASTALERT_VERSION=0.2.4
 
 RUN apk --update upgrade && \
-    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic && \
+    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic cargo && \
     rm -rf /var/cache/apk/*
 
 RUN pip install elastalert==${ELASTALERT_VERSION} && \
-    apk del gcc libffi-dev musl-dev python3-dev openssl-dev
+    apk del gcc libffi-dev musl-dev python3-dev openssl-dev cargo
 
 RUN mkdir -p /opt/elastalert && \
     echo "#!/bin/sh" >> /opt/elastalert/run.sh && \
