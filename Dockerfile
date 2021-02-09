@@ -18,7 +18,7 @@ FROM python:alpine
 COPY --from=builder /tmp/elastalert/dist/*.tar.gz /tmp/
 
 RUN apk --update upgrade && \
-    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic && \
+    apk add gcc libffi-dev musl-dev python3-dev openssl-dev tzdata libmagic cargo && \
 	pip install /tmp/*.tar.gz && \
     apk del gcc libffi-dev musl-dev python3-dev openssl-dev && \
     rm -rf /var/cache/apk/*
