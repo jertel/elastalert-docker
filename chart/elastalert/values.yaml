@@ -4,6 +4,12 @@ replicaCount: 1
 # number of helm release revisions to retain
 revisionHistoryLimit: 5
 
+# rules folder
+rulesFolder: /opt/rules
+
+# scan rules folder subdirectories
+scanSubdirectories: false
+
 # Default internal between alert checks against the elasticsearch datasource, in minutes
 runIntervalMins: 1
 

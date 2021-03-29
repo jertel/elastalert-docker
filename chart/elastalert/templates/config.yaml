@@ -11,8 +11,8 @@ metadata:
 data:
   elastalert_config: |-
     ---
-    rules_folder: /opt/rules
-    scan_subdirectories: false
+    rules_folder: {{ .Values.rulesFolder | default "/opt/rules" }}
+    scan_subdirectories: {{ .Values.scanSubdirectories | default false }}
     run_every:
       minutes: {{ .Values.runIntervalMins }}
 {{- if .Values.realertIntervalMins }}
