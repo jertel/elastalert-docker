@@ -4,6 +4,14 @@ replicaCount: 1
 # number of helm release revisions to retain
 revisionHistoryLimit: 5
 
+# optional rules folder override, for use with custom images with baked in rules
+# since secretRulesName option uses /opt/rules as a mount path, you can't use this path for your custom baked in rules
+# you should specify a different folder like: /opt/custom_rules
+# rulesFolder: /opt/custom_rules
+
+# optional, scan rules folder subdirectories
+# scanSubdirectories: false
+
 # Default internal between alert checks against the elasticsearch datasource, in minutes
 runIntervalMins: 1
 
